@@ -1,2 +1,3 @@
 "use strict" 
-console.log("aa");
+console.log("hello");
+console.log("bye");
