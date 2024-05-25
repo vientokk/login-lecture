@@ -15,19 +15,20 @@ function login() {
 
     fetch('/login',{
         method:"POST",
-        headers:{"Content-Type":"Application/Json"},
+        headers:{"Content-Type":"application/json"},
         body:JSON.stringify(req),
     })
     .then((res)=>res.json())
     .then ((res) =>{
+        console.log(res.success);
         if(res.success){
             location.href = "/";
-        }else{
+        }else{     
             alert(res.msg);
         }
     })
     .catch((err)=>{
-      console.error(new Error("로그인 중 에러 밸생"))  ;
+      console.error(new Error("로그인 중 에러 발생"))  ;
     })
     ;
 }

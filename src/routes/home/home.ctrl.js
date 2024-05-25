@@ -1,10 +1,5 @@
 "use strict";
-
-const users = {
-    id : ["aaa","kki", '가나다', '김성'],
-    psword : ["bbb",'1234','4567','0258'],
-};
-
+const UserStorage = require('../../models/UserStorage');
 const output = {
     home : (req, res)=>{
     res.render("home/index")},
@@ -13,23 +8,25 @@ const output = {
     },
 }
 
+
 const process = {
     login:(req, res)=>{
         const  id = req.body.id;
-        const psword = req.body.psword;
-        console.log(id, psword);   
+        const psword = req.body.psword; 
+
+    //const userStorage = new UserStorage();
+    const users = UserStorage.getUsers("id", "psword");
+        const response = {};
         if(users.id.includes(id)){
             const idx = users.id.indexOf(id);
             if(users.psword[idx] === psword){
-                return res.json({
-                    success:true,
-                });
-                }
+                response.success = true;
+                return res.json(response) ;
+            }
         }
-    
-        return res.json({success:false,
-            msg : '로그인 실패',
-        }) ;
+        response.success = false;
+        response.msg  = '로그인 실패';
+        return res.json(response) ;
     }    
 }
     
@@ -37,3 +34,4 @@ const process = {
 module.exports = {
     output,process,
 }
+
