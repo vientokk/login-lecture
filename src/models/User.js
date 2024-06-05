@@ -7,14 +7,19 @@ class User{
     }
     async login(){
         const client = this.body;
-        const {id, psword} =  await UserStorage.getUsersInfo(client.id);
-        if(id){
-            if(id === client.id && psword === client.psword){
-                return {success : true};
+        try {
+            const {id, psword} =  await UserStorage.getUsersInfo(client.id);
+            if(id){
+                if(id === client.id && psword === client.psword){
+                    return {success : true};
+                }
+                return {success:false , msg : "비밀번호 확인"}
             }
-            return {success:false , msg : "비밀번호 확인"}
+            return {success:false , msg : "아이디 확인"}    
+        } catch (error) {
+            return {success:false , msg : err}    
         }
-        return {success:false , msg : "아이디 확인"}
+        
     }
 
     async register(){
