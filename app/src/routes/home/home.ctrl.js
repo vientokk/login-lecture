@@ -28,7 +28,7 @@ const process = {
             }
         }
         return res.json({
-            success:"false",
+            success:false,
             msg:"로그인에 실패했습니다.",
         });
     },
