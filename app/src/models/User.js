@@ -6,10 +6,12 @@ class User{
         this.body = body;
     }
 
-    login(){
+    async login(){
         const client = this.body;
-        const {id, psword} = UserStorage.getUserInfo(client.id);
+        //const {id, psword} = UserStorage.getUserInfo(client.id);        
         // const a = UserStorage.getUserInfo("나개발");
+        const {id, psword} = await UserStorage.getUserInfo(client.id);
+
         if(id){
             if(id === client.id && psword === client.psword){
                 return {success :true};
