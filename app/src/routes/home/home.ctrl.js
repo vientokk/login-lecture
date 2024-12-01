@@ -22,6 +22,13 @@ const process = {
         return res.json(response);
  
     },
+    register:(req, res)=>{
+        const user = new User(req.body);
+        const response = user.register();
+        // console.log(response);
+        return res.json(response);
+ 
+    },
 };
  
 module.exports = {

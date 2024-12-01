@@ -7,16 +7,21 @@ class User{
     }
 
     login(){
-        const body = this.body;
-        const {id, psword} = UserStorage.getUserInfo(body.id);
+        const client = this.body;
+        const {id, psword} = UserStorage.getUserInfo(client.id);
         // const a = UserStorage.getUserInfo("나개발");
         if(id){
-            if(id === body.id && psword === body.psword){
+            if(id === client.id && psword === client.psword){
                 return {success :true};
             }
             return {success : false, msg:"비밀번호 오류"};
         }
         return {success : false, msg:"아이디 확인"};
+    }
+    register(){
+        const client = this.body;
+        const response = UserStorage.save(client);
+        return response;
     }
 };
 

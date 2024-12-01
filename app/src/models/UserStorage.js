@@ -3,7 +3,7 @@
 class UserStorage{
     static #users = {
         id:["wooimIT", "나개발","김팀장"],
-        psword:["1234", "1234",";123456"],
+        psword:["1234", "1234","123456"],
         name:["우리밋","나개발2","김팅장2"],
     };    
 
@@ -29,6 +29,16 @@ class UserStorage{
             return newUser;
         }, {});
         return userInfo;
+    }
+
+    static save(userInfo){
+        const users = this.#users;
+        users.id.push(userInfo.id);
+        users.name.push(userInfo.name);
+        users.psword.push(userInfo.psword);
+
+        // console.log(users);
+        return {success:true};
     }
 }
 
