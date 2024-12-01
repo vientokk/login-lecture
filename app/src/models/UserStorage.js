@@ -4,7 +4,7 @@ class UserStorage{
     static #users = {
         id:["wooimIT", "나개발","김팀장"],
         psword:["1234", "1234",";123456"],
-        name:["우리밋","나개발","김팅장"],
+        name:["우리밋","나개발2","김팅장2"],
     };    
 
 
@@ -18,6 +18,17 @@ class UserStorage{
         },{});
         
         return newUsers;
+    }
+
+    static getUserInfo(id){
+        const users = this.#users;
+        const idx = users.id.indexOf(id);
+        const usersKeys = Object.keys(users);   // [id, psword, name]
+        const userInfo = usersKeys.reduce((newUser, info)=>{
+            newUser[info] = users[info][idx];
+            return newUser;
+        }, {});
+        return userInfo;
     }
 }
 
